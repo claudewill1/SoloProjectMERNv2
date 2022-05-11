@@ -14,6 +14,10 @@ const CoinSchema = new mongoose.Schema({
         minlength: [4,'Year must be 4 numbers in length'],
         maxlength: [4,'Year must be 4 numbers in length']
     },
+    mint: {
+        type: String,
+        required: [true,'The mint location is required']
+    },
     denomination: {
         type: String,
         required: [true,'denomination is required']
@@ -30,6 +34,7 @@ const CoinSchema = new mongoose.Schema({
     gradingService: {
         type: String,
         enum: [
+            '',
             'ANACS',
             'NGC',
             'PGCS'
