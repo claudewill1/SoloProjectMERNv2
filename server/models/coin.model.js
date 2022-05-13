@@ -33,12 +33,7 @@ const CoinSchema = new mongoose.Schema({
     },
     gradingService: {
         type: String,
-        enum: [
-            '',
-            'ANACS',
-            'NGC',
-            'PGCS'
-        ],
+        
     },
     certificationNumber: {
         type: Number

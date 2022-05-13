@@ -13,7 +13,7 @@ const NewCoin = (props) => {
     const [graded,setGraded] = useState();
     const [gradingService,setGradingService] = useState("");
     const [certificationNumber,setCertificationNumber] = useState("");
-    const [error,setError] = useState({});
+    const [error,setErr] = useState({});
     const [isChecked,setIsChecked] = useState(false);
 
     const navigate = useNavigate();
@@ -33,7 +33,7 @@ const NewCoin = (props) => {
         }
 
         axios.post('http://localhost:8000/api/coins/create',newCoin)
-            .then(res=> res.data.error ? setError(res.data.error):navigate('/'))
+        .then(res=> res.data.error ? setErr(res.data.error):navigate('/'))
             .catch(err => console.log(err))
     }
     const handleChecked = (e) => {
@@ -50,60 +50,67 @@ const NewCoin = (props) => {
             <h3 style={{paddingRight:"5%"}}>Add a Coin</h3>
             <div style={{height:"auto",padding:"15px",marginBottom:"10px"}} className='border border-solid border-dark'>
                 <form className='d-flex flex-column justify-content-between' onSubmit={handleSubmit}>
-                    <div className="d-flex flex-row justify-content-evenly form-group">
+                    <div id className="d-flex flex-row justify-content-evenly form-group">
                         <h4>Coin Type:</h4>
                         <input onChange={(e)=>setCoinType(e.target.value)} type='text' className="form-control w-50"/>
-                        <p className="text-danger">{error.name?error.name._message:""}</p>
+                        <p className='text-danger'>{error.coinType ? error.coinType._message: ""}</p>
                     </div>
-                    <hr/>
+                    
                     
                     <div className="d-flex flex-row justify-content-evenly form-group">
                         <h4>Year:</h4>
-                        <input onChange={(e)=>setCoinType(e.target.value)} type='text' className="form-control w-50"/>
-                        <p className="text-danger">{error.name?error.name._message:""}</p>
+                        <input onChange={(e)=>setYear(e.target.value)} type='number' className="form-control w-50"/>
+                        <p className='text-danger'>{error.name ? error.name._message: ""}</p>
                     </div>
-                    <hr/>
+                    
                     <div className="d-flex flex-row justify-content-evenly form-group">
                         <h4>Mint:</h4>
-                        <input onChange={(e)=>setYear(e.target.value)} type='text' className="form-control w-50"/>
-                        <p className="text-danger">{error.name?error.name._message:""}</p>
+                        <input onChange={(e)=>setMint(e.target.value)} type='text' className="form-control w-50"/>
+                        <p className='text-danger'>{error.name ? error.name._message: ""}</p>
                     </div>
-                    <hr/>
+                    
                     <div className="d-flex flex-row justify-content-evenly form-group">
                         <h4>Denomination</h4>
                         <input onChange={(e)=>setDenomination(e.target.value)} type='text' className="form-control w-50"/>
-                        <p className="text-danger">{error.name?error.name._message:""}</p>
+                        <p className='text-danger'>{error.name ? error.name._message: ""}</p>
                     </div>
-                    <hr/>
-                    <div className="d-flex flex-row justify-content-evenly form-group">
+                    
+                    <div style={{paddingRight:"19%"}} className="d-flex flex-row justify-content-evenly form-group">
                         <h4>Value:</h4>
                         <input onChange={(e)=>setValue(e.target.value)} type='number' className="form-control w-50"/>
-                        <p className="text-danger">{error.name?error.name._message:""}</p>
+                        
                     </div>
-                    <hr/>
-                    <div className="d-flex flex-row justify-content-evenly form-group">
+                    
+                    <div style={{paddingRight:"19%"}} className="d-flex flex-row justify-content-evenly form-group">
                         <h4>Description:</h4>
-                        <textarea onChange={(e)=>setValue(e.target.value)} type='number' rows={4} cols={5} className="form-control w-50"/>
-                        <p className="text-danger">{error.name?error.name._message:""}</p>
+                        <textarea onChange={(e)=>setDescription(e.target.value)} type='text' rows={4} cols={5} className="form-control w-50"/>
+                        
                     </div>
-                    <hr/>
+                    
                     <div className="d-flex flex-row justify-content-evenly form-group">
                         <h4>Graded: <input type="checkbox" onChange={(e)=>handleChecked(e.target.value)}/></h4>
                         
-                        <p className="text-danger">{error.name?error.name._message:""}</p>
+                       
                     </div>
-                    <hr/>
-                    <div className="d-flex flex-row justify-content-evenly form-group">
+                    
+                    <div style={{paddingRight:"33%"}} className="d-flex flex-row justify-content-evenly form-group">
                         <h4>Grading Service:</h4>
-                        <input onChange={(e)=>setGradingService(e.target.value)} type='number' className="form-control w-50" disabled={isChecked===false?true:false}/>
-                        <p className="text-danger">{error.name?error.name._message:""}</p>
+                        <select name="" id="" onChange={(e)=>setGradingService(e.target.value)} disabled={isChecked===false?true:false}>
+                            Grading Service:
+                            <option>---------</option>
+                            <option value="ANACS">ANACS</option>
+                            <option value="NGC">NGC</option>
+                            <option value="PCGS">PCGS</option>
+                        </select>
                     </div>
-                    <hr/>
-                    <div className="d-flex flex-row justify-content-evenly form-group">
+                   
+                    <div style={{paddingRight:"19%"}} className="d-flex flex-row justify-content-evenly form-group">
                         <h4>Certification Number:</h4>
                         <input onChange={(e)=>setCertificationNumber(e.target.value)} type='number' className="form-control w-50" disabled={isChecked===false?true:false}/>
-                        <p className="text-danger">{error.name?error.name._message:""}</p>
+                        
                     </div>
+                    
+                    
                     <div className="d-flex flex-row justify-content-evenly form-group">
                         <input style={{marginTop:"10px"}} className='btn btn-primary d-flex justify-content-left' type="submit" value="Add Coin"/>
                     </div>

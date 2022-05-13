@@ -18,3 +18,11 @@ form {
     padding-bottom: 10px;
     margin-bottom: 10px;
 }
+
+select {
+    width: 40%;
+}
+
+form {
+    display: inline-block;
+}
