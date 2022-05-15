@@ -55,11 +55,11 @@ module.exports = {
             {new: true, runValidators: true}
         )
             .then((updatedCoin)=>{
-                console.log(updatedCoin);
+                //console.log(updatedCoin);
                 res.json(updatedCoin);
             })
             .catch((err)=>{
-                console.log(err);
+                //console.log(err);
                 console.log('updateOneCoin has failed!');
                 res.status(400).json(err);
             })

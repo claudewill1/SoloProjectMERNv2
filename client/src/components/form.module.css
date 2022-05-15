@@ -26,3 +26,11 @@ select {
 form {
     display: inline-block;
 }
+
+p {
+    color: red;
+}
+
+#group {
+    margin-top: 5px;
+}
