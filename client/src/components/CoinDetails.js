@@ -44,14 +44,35 @@ const CoinDetails = (props) =>{
                     <h4>{coin.denomination}</h4>
                 </div>
                 <div className='d-flex flex-row justify-content-evenly'>
-                    <h4>Coin Type:</h4>
-                    <h4>{coin.coinType}</h4>
+                    {coin.value !== null &&
+                        <h4>Value:</h4>
+                    }
+                    <h4>${coin.value}</h4>
                 </div>
                 <div className='d-flex flex-row justify-content-evenly'>
-                    <h4>Coin Type:</h4>
-                    <h4>{coin.coinType}</h4>
+                    {coin.description !== '' &&
+                        <h4>Description:</h4>
+                    }
+                    <p>{coin.description}</p>
                 </div>
-
+                
+                <div className='d-flex flex-row justify-content-eventy'>
+                { coin.graded === true &&
+                    <h4>Grading Service:</h4>
+                }
+                    <h4>{coin.gradingService}</h4>
+                </div>
+                <div className='d-flex flex-row justify-content-eventy'>
+                    {coin.graded === true &&
+                        <h4>Certification Number:</h4>
+                    }
+                        <h4>{coin.certificationNumber}</h4>
+                </div>
+                <div style={{marginBottom:'10px'}} className='d-flex flex-row justify-content-evenly'>
+                    <button className='btn btn-primary' style={{marginRight:"5px"}}>
+                        <Link className='text-light text-decoration-none' to={`/coins/${coin._id}/edit`}>EDIT</Link>
+                    </button>
+                </div>
             </div>
         </div>
     )
