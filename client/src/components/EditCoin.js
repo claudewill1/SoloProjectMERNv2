@@ -48,17 +48,13 @@ const EditCoin = (props) => {
             certificationNumber
         })
         .then(res=> {
-            console.log('=========================')
-                console.log(res.data)
-                
-                console.log('=========================')
-            if(res.data.error){
-                console.log(res.data.error)
-                setErr(res.data.error)
-            }
-            else 
+            console.log(res.data)
+            console.log('success')
                 nav('/')})
-        .catch(err => console.log(err));
+        .catch(err =>{ 
+            console.log(err)
+            setErr(err.response.data.errors)
+        });
     }
     const handleChecked = (e) => {
         const checked = e.target;
@@ -81,26 +77,26 @@ const EditCoin = (props) => {
                     <div id="group" className="d-flex flex-row justify-content-evenly form-group">
                         <h4>Coin Type:</h4>
                         <input onChange={(e)=>setCoinType(e.target.value)} type='text' className="form-control w-50" value={coinType}/>
-                        <p className="text-danger">{error.coinType?error.coinType._message:""}</p>
+                        <p className="text-danger">{error.coinType?error.coinType.message:""}</p>
                     </div>
                     
                     
                     <div id="group" className="d-flex flex-row justify-content-evenly form-group">
                         <h4>Year:</h4>
                         <input onChange={(e)=>setYear(e.target.value)} type='number' className="form-control w-50" value={year}/>
-                        <p className="text-danger">{error.year?error.year._message:""}</p>
+                        <p className="text-danger">{error.year?error.year.message:""}</p>
                     </div>
                     
                     <div id="group" className="d-flex flex-row justify-content-evenly form-group">
                         <h4>Mint:</h4>
                         <input onChange={(e)=>setMint(e.target.value)} type='text' className="form-control w-50" value={mint}/>
-                        <p className="text-danger">{error.mint?error.mint._message:""}</p>
+                        <p className="text-danger">{error.mint?error.mint.message:""}</p>
                     </div>
                     
                     <div id="group" className="d-flex flex-row justify-content-evenly form-group">
                         <h4>Denomination</h4>
                         <input onChange={(e)=>setDenomination(e.target.value)} type='text' className="form-control w-50" value={denomination}/>
-                        <p className="text-danger">{error.denomination?error.denomination._message:""}</p>
+                        <p className="text-danger">{error.denomination?error.denomination.message:""}</p>
                     </div>
                     
                     <div id="group" className="d-flex flex-row justify-content-evenly form-group">
@@ -125,7 +121,7 @@ const EditCoin = (props) => {
                         <h4>Grading Service:</h4>
                         <select name="" id="" onChange={(e)=>setGradingService(e.target.value)} value={gradingService} disabled={isChecked===false?true:false}>
                             Grading Service:
-                            <option>---------</option>
+                            <option defaultValue hidden>---------</option>
                             <option value="ANACS">ANACS</option>
                             <option value="NGC">NGC</option>
                             <option value="PCGS">PCGS</option>

@@ -33,8 +33,12 @@ const NewCoin = (props) => {
         }
 
         axios.post('http://localhost:8000/api/coins/create',newCoin)
-            .then(res=> res.data.error ? setErr(res.data.error):nav('/'))
-            .catch(err => console.log(err));
+            .then(res=>{
+                console.log(res.data)
+                console.log('Success!')
+                nav('/')
+            })
+            .catch(err => setErr(err.response.data.errors));
     }
     const handleChecked = (e) => {
         const checked = e.target;
@@ -55,25 +59,25 @@ const NewCoin = (props) => {
                         <div id="group" className="d-flex flex-row justify-content-evenly form-group">
                             <h4>Coin Type:</h4>
                             <input onChange={(e)=>setCoinType(e.target.value)} type='text' className="form-control w-50"/>
-                            <p className="text-danger">{error.coinType?error.coinType._message:""}</p>
+                            <p className="text-danger">{error.coinType?error.coinType.message:""}</p>
                         </div>
                         
                         <div id="group" className="d-flex flex-row justify-content-evenly form-group">
                             <h4>Year:</h4>
                             <input onChange={(e)=>setYear(e.target.value)} type='number' className="form-control w-50"/>
-                            <p className="text-danger">{error.year?error.year._message:""}</p>
+                            <p className="text-danger">{error.year?error.year.message:""}</p>
                         </div>
                         
                         <div id="group" className="d-flex flex-row justify-content-evenly form-group">
                             <h4>Mint:</h4>
                             <input onChange={(e)=>setMint(e.target.value)} type='text' className="form-control w-50"/>
-                            <p className="text-danger">{error.mint?error.coinmint._message:""}</p>
+                            <p className="text-danger">{error.mint?error.mint.message:""}</p>
                         </div>
                         
                         <div id="group" className="d-flex flex-row justify-content-evenly form-group">
                             <h4>Denomination</h4>
                             <input onChange={(e)=>setDenomination(e.target.value)} type='text' className="form-control w-50"/>
-                            <p className="text-danger">{error.denomination?error.denomination._message:""}</p>
+                            <p className="text-danger">{error.denomination?error.denomination.message:""}</p>
                         </div>
                         
                         <div id="group" style={{paddingRight:"19%",marginRight:'15px'}} className="d-flex flex-row justify-content-evenly form-group">

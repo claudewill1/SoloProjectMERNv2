@@ -44,26 +44,33 @@ const CoinDetails = (props) =>{
                     <h4>{coin.denomination}</h4>
                 </div>
                 <div className='d-flex flex-row justify-content-evenly'>
-                    {coin.value !== null &&
-                        <h4>Value:</h4>
+                    {coin.value &&
+                        <div className='d-flex flex-row justify-content-evenly'>
+                            <h4>Value:</h4>
+                            <h4>${coin.value}</h4>
+                        </div>
                     }
-                    <h4>${coin.value}</h4>
+                    
                 </div>
                 <div className='d-flex flex-row justify-content-evenly'>
-                    {coin.description !== '' &&
+                    {coin.description  &&
                         <h4>Description:</h4>
                     }
-                    <p>{coin.description}</p>
+                    <h5>{coin.description}</h5>
                 </div>
                 
-                <div className='d-flex flex-row justify-content-eventy'>
-                { coin.graded === true &&
+                <div className='d-flex flex-row justify-content-evenly'>
+                { coin.gradingService &&
+                    <div>
                     <h4>Grading Service:</h4>
-                }
                     <h4>{coin.gradingService}</h4>
+                    </div>
+                }
+                    
                 </div>
-                <div className='d-flex flex-row justify-content-eventy'>
-                    {coin.graded === true &&
+                <div className='d-flex flex-row justify-content-evenly'>
+                    {coin.graded  &&
+                        
                         <h4>Certification Number:</h4>
                     }
                         <h4>{coin.certificationNumber}</h4>
